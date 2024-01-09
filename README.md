@@ -1,14 +1,20 @@
 # Welcome to your CDK TypeScript project
+Project that uses AWS-cdk to create a lambda function that you call with an id of a pdf, looks it up in  dynamodb, gets the pdf from s3 and returns the text content;
 
-This is a blank project for CDK development with TypeScript.
+## Setup
+Add region, bucketname and dynamodb table name to ./bin/textraction.ts file
+run cdk synth and the cdk deploy to build project in aws
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Requirements
+- Innstalled cdk cli
+- Access to an aws accountn and configured AWS environment variables (Short-term credentials) for the cli
+- change ./lambda/index.py to mactch your requirements and setup
 
-## Useful commands
+## Function
+uses Py2PDF library to extract file content.
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+This function is ment to be called with an id, and returns filecontents of a pdf file
+
+## Todo
+- error messages
+- return error if file is not pdf
